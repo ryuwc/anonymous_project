@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="01_nav_footer.css">
+  <title>Community</title>
+</head>
+<body>
+  <nav class="sticky-top bg-dark d-flex justify-content-md-between align-items-center navbar navbar-expand-lg bg-dark">
+    <a href="#" class='d-none d-md-inline'>
+      <img src="images/logo.png" alt="logo">
+    </a>
+    <ul class="d-none  list-unstyled d-md-flex m-0 justify-content-center align-items-center" >
+      <li class="mx-3" style="text-align: center;"><a href="02_home.html" class="text-decoration-none text-white fw-bold">Home</a></li>
+      <li class="mx-3" style="text-align: center;"><a href="03_community.html" class="text-decoration-none text-white fw-bold">Community</a></li>
+      <li class="mx-3"><button type="button" class="border-0 bg-dark btn btn-primary text-white fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Login</button></li>
+    </ul>
+
+    <div class="d-flex container-fluid d-md-none">
+      <a class="navbar-brand" href="#"><img src="images/logo.png" alt=""></a>
+      <button class="navbar-toggler btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">Community</a>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="border-0 bg-dark btn btn-primary text-white ps-0" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Login</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  
+  
+  <!-- Modal -->
+  
+  
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</Title></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="">
+              <label for="recipient-name" class="col-form-label">Email address:</label>
+              <input type="text" class="form-control" id="recipient-name">
+            </div>
+            <div class="mb-3" style="color: gray; font-size: 0.7rem;">
+              We'll never share your email with anyone else.
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="col-form-label">Password:</label>
+              <textarea class="form-control" id="message-text"></textarea>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+              <label class="form-check-label" for="flexCheckDefault">
+                Check me out
+              </label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <footer class="py-3 bg-white fixed-bottom d-flex justify-content-center align-items-center">
+    <p class="mb-0 text-black fw-bold">Web-bootstrap PIT. by 류원창</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>
