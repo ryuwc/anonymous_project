@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>NEW</h1>
+  <hr>
+  <form action="{% url 'movies:create' %}" method="POST">
+    {% csrf_token %}
+    {% comment %} <div class="mb-3 row">
+      <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+      <div class="col-sm-10 mb-3" >
+        <input type="password" class="form-control" id="inputPassword">
+      </div>
+      <label for="aaa" class="col-sm-2 col-form-label">Password</label>
+      <div class="col-sm-10">
+        <textarea name="" id="aaa" cols="30" rows="10" class="form-control"></textarea>
+      </div> {% endcomment %}
+    </div>
+    <label for="title">TITLE </label>
+    <input type="text" id="title" name='title'>
+    <br>
+    <label for="audience">AUDIENCE </label>
+    <input type="text" id="audience" name='audience'>
+    <br>
+    <label for="release_date">RELEASE_DATE </label>
+    <input type="date" id="release_date" name='release_date'>
+    <br>
+    <label for="genre">GENRE:</label>
+    <select id="genre" name="genre">
+      {% for genre in genres %}
+        <option value={{ genre }} selected >{{ genre }}</option>
+      {% endfor %}
+    </select>
+    <br>
+    <label for="score">SCORE: </label>
+    <input type="number" id="score" name="score" min="0" step='0.5' max="5">
+    <br>
+    <label for="poster_url">POSTER_URL </label>
+    <input type="text" id="poster_url" name='poster_url'>
+    <br>
+    <label for="description">DESCRIPTION</label>
+    <textarea name="description" id="description" cols="30" rows="10"></textarea>
+    <br>
+    <input type="submit" >
+    <hr>
+    <a href="{% url 'movies:index' %}">BACK</a>
+    
+
+  </form>
+{% endblock content %}
