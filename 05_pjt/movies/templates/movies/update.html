@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>UPDATE</h1>
+  <hr>
+  <form action="{% url 'movies:update' movie.pk %}" method='POST' class='d-inlin`e'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value='Submit' class="btn btn-primary">
+    <input type="reset" value="Cancel" class='d-inline btn btn-primary'>
+  </form>
+  <hr>
+  <a href="{% url 'movies:detail' movie.pk %}" class="btn btn-info">BACK</a>
+
+{% endblock content %}
+
+
+

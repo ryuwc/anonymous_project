@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>SIGN UP</h1>
+  <form action="{% url 'accounts:signup' %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="제출" class="btn btn-warning">
+  </form>
+  <hr>
+  <a href="{% url 'movies:index' %}" class="btn btn-primary">BACK</a>
+{% endblock content %}
