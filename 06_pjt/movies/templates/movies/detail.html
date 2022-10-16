@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+  <h2>DETAIL</h2>
+  <hr>
+  <h3>{{ movie.title }}</h3>
+  <br>
+  <p>{{ movie.description }}</p>
+  <br>
+  <div>
+    {% if user == movie.user %}
+      <div>
+        <a href="{% url 'movies:update' movie.pk %}" class="btn btn-warning btn-sm">영화 정보 수정</a>
+      </div>
+      <div>
+        <form action="{% url 'movies:delete' movie.pk %}" method="POST">
+          {% csrf_token %}
+          <input type="submit" value="영화 정보 삭제" class="btn btn-danger btn-sm">
+        </form>
+      </div>
+    {% endif %}
+    <a href="{% url 'movies:index' %}" class="btn btn-secondary btn-sm">이전</a>
+  </div>
+  <hr>
+  <h4>댓글 목록</h4>
+  <ul>
+    {% for comment in comments %}
+      <li>
+        {{ comment.user }} - {{ comment.content }}
+        {% if user == comment.user %}
+          <form action="{% url 'movies:comments_delete' movie.pk comment.pk %}" method="POST" class="d-inline">
+            {% csrf_token %}
+            <input type="submit" value="삭제" class="btn btn-danger btn-sm">
+          </form>
+        {% endif %}
+      </li>
+    {% empty %}
+      <li>작성된 리뷰가 없습니다.</li>
+    {% endfor %}
+  </ul>
+
+  <hr>
+  {% if request.user.is_authenticated %}
+    <form action="{% url 'movies:comments_create' movie.pk %}" method="POST">
+      {% csrf_token %}
+      {% bootstrap_form comment_form %}
+      <input type="submit" value="작성" class="btn btn-primary btn-sm">
+    </form>
+  {% else %}
+    <a href="{% url 'accounts:login' %}" class="btn btn-success btn-sm">리뷰를 작성하려면 로그인하세요.</a>
+  {% endif %}
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>INDEX</h1>
+    <div>
+      {% if request.user.is_authenticated %}
+        <a href="{% url 'movies:create' %}" class="btn btn-primary btn-sm">CREATE</a>
+      {% endif %}
+    </div>
+  <hr>
+  {% for movie in movies %}
+    <a href="{% url 'movies:detail' movie.pk %}" >{{ movie.title }}</a>
+    <hr>
+  {% endfor %}
+{% endblock content %}
