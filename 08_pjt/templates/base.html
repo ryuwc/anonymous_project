@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <style>
+    #card-div:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+    }
+    * {
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+    button {
+      border: 1px white solid;
+      background-color: white;
+    }
+    a {
+      text-decoration: none
+    }
+    a:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+    }<style>
+      .card:hover{
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+      }
+      .modal {
+        position: fixed;
+        background-color: rgba(0, 0, 0, 0.5);
+        top: 0;
+        height: 100vh;
+        width: 100vw;
+        display: none;
+        justify-content: center;
+        align-items: center;
+      }
+      .modal-content {
+        width: 100%;
+        height: 20rem;
+        background-color: #60A5FA;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+        color: white;
+        animation: move 2s ease-in-out;
+      }
+      .modal{
+        break-word:normal;
+      }
+  </style>
+  <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    <nav class="d-flex justify-content-between navbar-dark navbar bg-dark navbar-expand-md sticky-top">
+      {% if user.is_authenticated %}
+      <div class="d-flex mx-3">
+        <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FXgwGp%2FbtrQq445WD3%2Fr2Nt0k2hRnBR3uclMiaMTK%2Fimg.png" style="height:30px;">
+        <a href="{% url 'movies:index'%}" class="mx-3 active text-white" >Movie</a>
+        <a href="{% url 'community:index'%}" class="mx-3 text-white" >Community</a>
+        <a href="{% url 'community:create'%}" class="mx-3 text-white" >New Review</a>
+      </div>
+      
+      <div class="d-flex">
+        <a href="{% url 'accounts:profile' user %}" class="text-white mx-3"><h3>Hello, {{ user.username }}</h3></a>
+        <form action="{% url 'accounts:logout' %}" method="POST" class="mx-3">
+          {% csrf_token %}
+          <input type="submit" value="Logout" class="btn btn-light">
+        </form>
+      </div>
+
+      {% else %}
+      <div>
+        <a href="{% url 'accounts:signup' %}" class="mx-3 text-white">Signup</a>
+        <a href="{% url 'accounts:login' %}" class="mx-3 text-white">Login</a>
+      </div>
+      {% endif %}
+    </nav>
+    {% block content %}
+    {% endblock content %}
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://kit.fontawesome.com/703c5975bf.js" crossorigin="anonymous"></script>
+  {% block script %}
+  {% endblock script %}
+</body>
+</html>

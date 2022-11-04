@@ -1,0 +1,13 @@
+<div class="container d-flex bg-dark rounded-3 shadow-lg text-white">
+  <img class="w-25 m-4" src="{{ movie.poster_path }}">
+  <div>
+    <h1 class="mt-4">{{ movie.title }}</h1>
+    <p>
+      <span>개봉일 : {{movie.release_date}} / </span>
+      <span><i class="fa-solid fa-star"></i> 평점 : {{ movie.vote_average }}</span>
+    </p>
+    <div>
+      {{ movie.overview }}
+    </div>
+  </div>
+</div>

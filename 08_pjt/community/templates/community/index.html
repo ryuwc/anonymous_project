@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+  <h1>Community</h1>
+  <hr>
+  {% for review in reviews %}
+    <p>작성자 : <a href="{% url 'accounts:profile' review.user.username %}">{{ review.user }}</a></p>
+    <p>글 번호: {{ review.pk }}</p>
+    <p>글 제목: {{ review.title }}</p>
+    <p>글 내용: {{ review.content }}</p>
+    <form id="likeForm" data-review-id="{{ review.pk }}">
+      {% csrf_token %}
+      {% if user in review.like_users.all %}
+        <button id="btn{{ review.pk }}"><i class="fa-sharp fa-solid fa-heart" style="color: red; font-size: 3em;"></i></button>
+      {% else %}
+        <button id="btn{{ review.pk }}"><i class="fa-sharp fa-solid fa-heart" style="color: gray; font-size: 3em;"></i></button>
+      {% endif %}
+    </form>
+    <p id="likeP{{ review.pk }}">
+      <span>{{ review.like_users.all|length }}</span> 명이 이 글을 좋아합니다.
+    </p>
+    <a href="{% url 'community:detail' review.pk %}">[detail]</a>
+    <hr>
+  {% endfor %}
+{% endblock %}
+
+{% block script %}
+<script>
+  const likeForms = document.querySelectorAll('#likeForm')
+  
+
+  const likeFunc = (event) => {
+    event.preventDefault()
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+    const username = event.target.dataset.reviewId
+    // console.log(username)
+    axios({
+      method: 'POST',
+      url: `/community/${username}/like/`,
+      headers: {'X-CSRFToken': csrftoken,}
+    })
+    .then((res) => {
+      const isLiked = res.data.is_liked
+      const likeBtn = document.querySelector('#btn'+username)
+      console.log(likeBtn.innerHTML)
+      likeBtn.innerHTML = isLiked ? '<i class="fa-sharp fa-solid fa-heart" style="color: red; font-size: 3em;"></i>' : '<i class="fa-sharp fa-solid fa-heart" style="color: gray; font-size: 3em;"></i>'
+      // likeBtn.innerText = isLiked ? '안좋아요' : '좋아요'
+      const likeP = document.querySelector('#likeP'+username)
+      const likeCount = res.data.like_count
+      likeP.innerText = `${likeCount} 명이 이 글을 좋아합니다.`
+      // console.log(likeP)
+    })
+  }
+
+  likeForms.forEach((form) => {
+    form.addEventListener('submit', likeFunc)
+  })
+</script>
+
+
+{% endblock script %}
+
+
+
+
