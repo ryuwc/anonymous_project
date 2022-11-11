@@ -1,0 +1,23 @@
+<template>
+  <div>
+    {{ movie }}
+    <!-- <div id="card-div" class="card m-3" style="width: 18rem;" data-toggle="tab-hover">
+        <img :src="movie.poster_path" class="h-100 card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title text-truncate">{{ movie.title }}</h5>
+          <p class="card-text">평점: {{ movie.vote_average }}</p>
+        </div>
+    </div> -->
+  </div>
+
+</template>
+
+<script>
+export default {
+  name: 'MovieCard',
+}
+</script>
+
+<style>
+
+</style>
